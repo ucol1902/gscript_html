@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Input Hasil Pemeriksaan Pelanggan</title>
+    <style>
+        <?!= include('MainFormStyle'); ?>
+        <?!= include('DataDILStyle'); ?>
+        <?!= include('HasilPemeriksaanStyle'); ?>
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Form Input Hasil Pemeriksaan Pelanggan TM</h2>
+
+        <!-- Form Utama (Main Form) yang menggabungkan FormDataDIL dan FormHasilPemeriksaan -->
+        <form id="mainForm" action="https://script.google.com/macros/s/AKfycbxgtH1cMhfIdvlSl3JU7dhtsybdZ4bYl3o8eF5EBhzUi4_kt2sVi-E63bNPXz4mPfkkdQ/exec" method="POST" enctype="multipart/form-data">
+            <!-- Include Form Data DIL -->
+            <?!= include('FormDataDIL'); ?>
+
+            <!-- Include Form Hasil Pemeriksaan -->
+            <?!= include('FormHasilPemeriksaan'); ?>
+
+            <!-- Tombol Submit berada di Main Form -->
+            <div class="row">
+                <div class="col">
+                    <button id="submitButton" type="submit" hidden>Submit</button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col">
+                <div id="response"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        <?!= include('FormLoad'); ?>
+        <?!= include('FormEvents'); ?>
+        <?!= include('FormSubmit'); ?>
+    </script>
+</body>
+</html>
