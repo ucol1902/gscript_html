@@ -1,0 +1,22 @@
+document.addEventListener("DOMContentLoaded", function () {
+    let customerIdInput = document.getElementById("customerId");
+    let hasilPemeriksaanContainer = document.querySelector(".sub-container.hasil-pemeriksaan");
+
+    customerIdInput.disabled = true; // Disable input ID Pelanggan saat loading
+
+    google.script.run.withSuccessHandler(function(data) {
+        console.log("Data Pelanggan:", data);
+        window.customerData = data;
+        window.idList = Object.keys(data);
+        customerIdInput.disabled = false; // Enable setelah data selesai dimuat
+
+        // Event listener untuk menampilkan Hasil Pemeriksaan setelah IDPEL dipilih
+        customerIdInput.addEventListener("input", function () {
+            if (customerIdInput.value.trim() !== "" && window.customerData[customerIdInput.value]) {
+                hasilPemeriksaanContainer.style.display = "block";
+            } else {
+                hasilPemeriksaanContainer.style.display = "none";
+            }
+        });
+    }).getAllCustomerData();
+});
