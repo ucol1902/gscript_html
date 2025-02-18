@@ -1,0 +1,173 @@
+<div class="sub-container hasil-pemeriksaan">
+    <h3>Hasil Pemeriksaan</h3>
+
+    <!-- Baris 1: Merk Meter, Nomor Meter, Konstruksi APP -->
+    <div class="row">
+        <div class="col">
+            <label for="merkMeterpemeriksaan">Merk Meter</label>
+            <select id="merkMeterpemeriksaan" name="merkMeterpemeriksaan" required>
+                <option value="">Pilih Merk Meter</option>
+                <option value="HEXING">HEXING</option>
+                <option value="EDMI">EDMI</option>
+                <option value="ITRON">ITRON</option>
+                <option value="WASION">WASION</option>
+                <option value="ELIPS SYSTEM">ELIPS SYSTEM</option>
+                <option value="LANDIS+GYR">LANDIS+GYR</option>
+            </select>
+        </div>
+
+        <div class="col">
+            <label for="nomorMeter">Nomor Meter</label>
+            <input type="number" id="nomorMeter" name="nomorMeter" required>
+        </div>
+
+        <div class="col">
+            <label for="konstruksiAPP">Konstruksi APP</label>
+            <select id="konstruksiAPP" name="konstruksiAPP" required>
+                <option value="">Pilih Konstruksi</option>
+                <option value="Indoor">Indoor</option>
+                <option value="Outdoor">Outdoor</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Baris 2: Pengukuran Sisi Primer -->
+    <div class="pengukuran-primer">
+        <h4>Pengukuran Sisi Primer</h4>
+        <div class="row">
+            <div class="col">
+                <label for="Rprimer">R (A)</label>
+                <input type="number" id="Rprimer" name="Rprimer" step="0.01" required>
+            </div>
+            <div class="col">
+                <label for="Sprimer">S (A)</label>
+                <input type="number" id="Sprimer" name="Sprimer" step="0.01" required>
+            </div>
+            <div class="col">
+                <label for="Tprimer">T (A)</label>
+                <input type="number" id="Tprimer" name="Tprimer" step="0.01" required>
+            </div>
+            <div class="col">
+                <label for="cosphiprimer">Cos Φ</label>
+                <input type="number" id="cosphiprimer" name="cosphiprimer" step="0.01" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="RSprimer">RS (V)</label>
+                <input type="number" id="RSprimer" name="RSprimer" step="0.01" required>
+            </div>
+            <div class="col">
+                <label for="RTprimer">RT (V)</label>
+                <input type="number" id="RTprimer" name="RTprimer" step="0.01" required>
+            </div>
+            <div class="col">
+                <label for="STprimer">ST (V)</label>
+                <input type="number" id="STprimer" name="STprimer" step="0.01" required>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Baris 3: Pengukuran Sisi Sekunder -->
+    <div class="pengukuran-primer">
+        <h4>Pengukuran Sisi Sekunder</h4>
+        <div class="row">
+            <div class="col">
+                <label for="Rsekunder">R (A)</label>
+                <input type="number" id="Rsekunder" name="Rsekunder" step="0.01" required>
+            </div>
+            <div class="col">
+                <label for="Ssekunder">S (A)</label>
+                <input type="number" id="Ssekunder" name="Ssekunder" step="0.01" required>
+            </div>
+            <div class="col">
+                <label for="Tsekunder">T (A)</label>
+                <input type="number" id="Tsekunder" name="Tsekunder" step="0.01" required>
+            </div>
+            <div class="col">
+                <label for="cosphisekunder">Cos Φ</label>
+                <input type="number" id="cosphisekunder" name="cosphisekunder" step="0.01" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="RSsekunder">RS (V)</label>
+                <input type="number" id="RSsekunder" name="RSsekunder" step="0.01" required>
+            </div>
+            <div class="col">
+                <label for="RTsekunder">RT (V)</label>
+                <input type="number" id="RTsekunder" name="RTsekunder" step="0.01" required>
+            </div>
+            <div class="col">
+                <label for="STsekunder">ST (V)</label>
+                <input type="number" id="STsekunder" name="STsekunder" step="0.01" required>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Baris 4: Rasio CT & PT -->
+    <div class="pengukuran-primer">
+        <h4>Rasio CT & PT</h4>
+        <div class="row">
+            <div class="col">
+                <label for="CTprimer">CT Primer</label>
+                <input type="number" id="CTprimer" name="CTprimer" required>
+            </div>
+            <div class="col">
+                <label for="CTsekunder">CT Sekunder</label>
+                <input type="number" id="CTsekunder" name="CTsekunder" required>
+            </div>
+            <div class="col">
+                <label for="PTprimer">PT Primer</label>
+                <input type="number" id="PTprimer" name="PTprimer" required>
+            </div>
+            <div class="col">
+                <label for="PTsekunder">PT Sekunder</label>
+                <input type="number" id="PTsekunder" name="PTsekunder" required>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Baris 5: Hasil Uji Error -->
+    <div class="pengukuran-primer">
+        <h4>Hasil Uji Error</h4>
+        <div class="row">
+            <div class="col">
+                <label for="errorkwh">kWh Meter</label>
+                <input type="number" id="errorkwh" name="errorkwh" step="0.01" required>
+            </div>
+            <div class="col">
+                <label for="errorCTR">CT R</label>
+                <input type="number" id="errorCTR" name="errorCTR" step="0.01" required>
+            </div>
+            <div class="col">
+                <label for="errorCTS">CT S</label>
+                <input type="number" id="errorCTS" name="errorCTS" step="0.01" required>
+            </div>
+            <div class="col">
+                <label for="errorCTT">CT T</label>
+                <input type="number" id="errorCTT" name="errorCTT" step="0.01" required>
+            </div>
+        </div>
+    </div>
+
+    <!-- Baris 6: Rekomendasi -->
+    <div class="row">
+        <div class="col">
+            <label for="rekomendasi">Rekomendasi</label>
+            <input type="text" id="rekomendasi" name="rekomendasi" required>
+        </div>
+        <div class="col">
+            <label for="potensikwh">Potensi kWh</label>
+            <input type="number" id="potensikwh" name="potensikwh" required>
+        </div>
+    </div>
+    
+    <!-- Baris 7: Upload BA Pemeriksaan -->
+    <div class="row">
+        <div class="col">
+            <label for="uploadBA">Upload BA Pemeriksaan (PDF)</label>
+            <input type="file" id="uploadBA" name="uploadBA" accept="application/pdf" required>
+        </div>
+    </div>
+</div>
