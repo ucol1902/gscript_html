@@ -1,0 +1,100 @@
+document.getElementById("mainForm").addEventListener("submit", function(e) {
+  e.preventDefault(); // Mencegah reload halaman
+  document.getElementById("submitButton").hidden = true;
+  document.getElementById("response").textContent = "Laporan sedang diuplaod, mohon tunggu...";
+  
+  var today = new Date();
+  var options = { month: 'long' };
+  var monthName = today.toLocaleDateString('id-ID', options);
+  var year = today.getFullYear();
+
+  var customerId= document.getElementById("customerId").value;
+  var name= document.getElementById("name").value;
+  var rowNumber= document.getElementById("rowNumber").value;
+  var merkMeterpemeriksaan= document.getElementById("merkMeterpemeriksaan").value;
+  var nomorMeter= document.getElementById("nomorMeter").value;
+  var konstruksiAPP= document.getElementById("konstruksiAPP").value;
+  var rprimer= document.getElementById("Rprimer").value;
+  var sprimer= document.getElementById("Sprimer").value;
+  var tprimer= document.getElementById("Tprimer").value;
+  var cosphiprimer= document.getElementById("cosphiprimer").value;
+  var rsprimer= document.getElementById("RSprimer").value;
+  var rtprimer= document.getElementById("RTprimer").value;
+  var stprimer= document.getElementById("STprimer").value;
+  var rsekunder= document.getElementById("Rsekunder").value;
+  var ssekunder= document.getElementById("Ssekunder").value;
+  var tsekunder= document.getElementById("Tsekunder").value;
+  var cosphisekunder= document.getElementById("cosphisekunder").value;
+  var rssekunder= document.getElementById("RSsekunder").value;
+  var rtsekunder= document.getElementById("RTsekunder").value;
+  var stsekunder= document.getElementById("STsekunder").value;
+  var ctprimer= document.getElementById("CTprimer").value;
+  var ctsekunder= document.getElementById("CTsekunder").value;
+  var ptprimer= document.getElementById("PTprimer").value;
+  var ptsekunder= document.getElementById("PTsekunder").value;
+  var errorkwh= document.getElementById("errorkwh").value;
+  var errorCTR= document.getElementById("errorCTR").value;
+  var errorCTS= document.getElementById("errorCTS").value;
+  var errorCTT= document.getElementById("errorCTT").value;
+  var rekomendasi= document.getElementById("rekomendasi").value;
+  var potensikwh= document.getElementById("potensikwh").value;
+  var fileInput = document.getElementById("uploadBA");
+  
+  var fileName = customerId + " " + name + " " + monthName + " " + year;
+
+  let hasilPemeriksaanContainer = document.querySelector(".sub-container.hasil-pemeriksaan");
+
+  var file = fileInput.files[0];
+
+  if (!file) {
+      alert("Harap pilih file sebelum mengirim!");
+      return;
+  }
+
+  var reader = new FileReader();
+  reader.onload = function(e) {
+      var base64Data = e.target.result.split(",")[1];
+
+      var formData = {
+          customerId: customerId,
+          name: name,
+          rowNumber: rowNumber,
+          merkMeterpemeriksaan: merkMeterpemeriksaan,
+          nomorMeter: nomorMeter,
+          konstruksiAPP: konstruksiAPP,
+          rprimer: rprimer,
+          sprimer: sprimer,
+          tprimer: tprimer,
+          cosphiprimer: cosphiprimer,
+          rsprimer: rsprimer,
+          rtprimer: rtprimer,
+          stprimer: stprimer,
+          rsekunder: rsekunder,
+          ssekunder: ssekunder,
+          tsekunder: tsekunder,
+          cosphisekunder: cosphisekunder,
+          rssekunder: rssekunder,
+          rtsekunder: rtsekunder,
+          stsekunder: stsekunder,
+          ctprimer: ctprimer,
+          ctsekunder: ctsekunder,
+          ptprimer: ptprimer,
+          ptsekunder: ptsekunder,
+          errorkwh: errorkwh,
+          errorCTR: errorCTR,
+          errorCTS: errorCTS,
+          errorCTT: errorCTT,
+          rekomendasi: rekomendasi,
+          potensikwh: potensikwh,
+          fileName: fileName,
+          fileData: base64Data
+      };
+
+      google.script.run.withSuccessHandler(function(response) {
+          document.getElementById("response").textContent = response;
+          document.getElementById("mainForm").reset();
+          hasilPemeriksaanContainer.style.display = "none";
+      }).submitForm(formData);
+  };
+  reader.readAsDataURL(file);
+});
