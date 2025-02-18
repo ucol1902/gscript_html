@@ -1,0 +1,91 @@
+document.getElementById("customerId").addEventListener("input", function() {
+    let input = this.value.trim();
+    let suggestionBox = document.getElementById("idSuggestions");
+    suggestionBox.innerHTML = "";
+
+    if (input.length > 0 && window.idList) {
+        let filteredIds = window.idList.filter(id => id.includes(input));
+        filteredIds.forEach(id => {
+            let option = document.createElement("option");
+            option.value = id;
+            suggestionBox.appendChild(option);
+        });
+    }
+});
+
+document.getElementById("customerId").addEventListener("change", function() {
+    let input = this.value.trim();
+    let container = document.getElementById("mapsButtonContainer"); // Perbaikan pemilihan container
+
+    if (!container) {
+        console.error("Container mapsButtonContainer tidak ditemukan.");
+        return;
+    }
+
+    // Hapus tombol sebelumnya jika ada
+    container.innerHTML = "";
+
+    if (window.customerData && window.customerData[input]) {
+        let data = window.customerData[input];
+        
+        let hasilPemeriksaanContainer = document.querySelector(".sub-container.hasil-pemeriksaan");
+        hasilPemeriksaanContainer.style.display = "block"; // Tampilkan hasil pemeriksaan
+
+        let dayaFormatted = formatDaya(data.data9);
+
+        document.getElementById("up3").value = data.data3;
+        document.getElementById("ulp").value = data.data4;
+        document.getElementById("name").value = data.data5;
+        document.getElementById("address").value = data.data6;
+        document.getElementById("tarifdaya").value = `${data.data8}/${dayaFormatted}`;
+        document.getElementById("ct").value = `${formatNumber(data.data14)}/${formatNumber(data.data15)}`;
+        document.getElementById("pt").value = `${formatNumber(data.data16)}/${formatNumber(data.data17)}`;
+        document.getElementById("fk").value = formatNumber(data.data18);
+        document.getElementById("merkMeter").value = data.data19;
+        document.getElementById("latitude").value = data.data20;
+        document.getElementById("longitude").value = data.data21;
+        document.getElementById("rowNumber").value = data.rowNumber;
+        document.getElementById("submitButton").hidden = false;
+        document.getElementById("response").textContent = "";
+
+        let latitude = data.data20;
+        let longitude = data.data21;
+
+        if (latitude && longitude) {
+            let button = document.createElement("button");
+            button.id = "openMaps";
+            button.textContent = "Buka Maps";
+            button.onclick = (function(lat, long) {
+                return function() {
+                    if (lat && long) {
+                        let mapsUrl = `https://www.google.com/maps?q=${lat},${long}`;
+                        window.open(mapsUrl, "_blank");
+                    } else {
+                        alert("Koordinat belum tersedia!");
+                    }
+                };
+            })(latitude, longitude);
+
+            container.appendChild(button);
+        }
+    } else {
+        let fields = ["up3", "ulp", "name", "address", "tarifdaya", "ct", "pt", "fk", "merkMeter", "latitude", "longitude", "rowNumber"];
+        fields.forEach(field => document.getElementById(field).value = "");
+        hasilPemeriksaanContainer.style.display = "none"; // Sembunyikan hasil pemeriksaan jika ID tidak valid
+    }
+});
+
+function formatNumber(number) {
+    return Number(number).toLocaleString("id-ID");
+}
+
+function formatDaya(daya) {
+    daya = Number(daya);
+    if (daya >= 1000000) {
+        return (daya / 1000000).toLocaleString("id-ID") + " MVA";
+    } else if (daya >= 1000) {
+        return (daya / 1000).toLocaleString("id-ID") + " kVA";
+    } else {
+        return daya.toLocaleString("id-ID") + " VA";
+    }
+}
